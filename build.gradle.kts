@@ -41,4 +41,9 @@ spotless {
     target("**/*.md")
     flexmark()
   }
+
+  json {
+    target("**/*.json")
+    simple()
+  }
 }
