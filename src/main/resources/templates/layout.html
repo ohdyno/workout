@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html th:fragment="layout (title, content)" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <link rel="stylesheet" href="css/pico.classless.red.min.css">
+    <title th:replace="${title}">Simple Workout Tracker</title>
+</head>
+<body>
+<main th:replace="${content}">
+    <h1>Simple Workout Tracker</h1>
+</main>
+</body>
+</html>
