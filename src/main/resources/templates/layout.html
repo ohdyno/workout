@@ -8,6 +8,16 @@
     <title th:replace="${title}">Simple Workout Tracker</title>
 </head>
 <body>
+<header>
+    <nav>
+        <ul>
+            <li><a th:href="@{/}">SWT</a>: Simple Workout Tracker</li>
+        </ul>
+        <ul>
+            <li><a th:href="@{/about}">About</a></li>
+        </ul>
+    </nav>
+</header>
 <main th:replace="${content}">
     <h1>Simple Workout Tracker</h1>
 </main>
