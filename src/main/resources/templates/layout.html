@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <link rel="stylesheet" href="css/pico.classless.red.min.css">
+    <script th:src="@{/webjars/htmx.org/2.0.3/dist/htmx.min.js}" defer></script>
     <title th:replace="${title}">Simple Workout Tracker</title>
 </head>
 <body>
@@ -14,7 +15,11 @@
             <li><a th:href="@{/}">SWT</a>: Simple Workout Tracker</li>
         </ul>
         <ul>
-            <li><a th:href="@{/about}">About</a></li>
+            <li><a th:href="@{/error}">Error</a></li>
+            <li><a th:hx-get="@{/about}"
+                        hx-trigger="click"
+                        hx-target="#content"
+                        hx-swap="outerHTML">About</a></li>
         </ul>
     </nav>
 </header>
