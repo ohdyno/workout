@@ -14,5 +14,5 @@ gitHooks {
   }
 
   commitMsg { conventionalCommits { defaultTypes() } }
-  createHooks(true)
+  createHooks()
 }
