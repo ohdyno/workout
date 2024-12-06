@@ -48,4 +48,9 @@ spotless {
     target("**/*.json")
     simple()
   }
+
+  yaml {
+    target("**/*.yml")
+    jackson()
+  }
 }
