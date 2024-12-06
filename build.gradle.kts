@@ -1,6 +1,8 @@
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
+
 plugins {
-  kotlin("jvm") version "1.9.25"
-  kotlin("plugin.spring") version "1.9.25"
+  kotlin("jvm") version "2.1.0"
+  kotlin("plugin.spring") version "2.1.0"
   id("org.springframework.boot") version "3.4.0"
   id("io.spring.dependency-management") version "1.1.6"
   id("com.diffplug.spotless") version "7.0.0.BETA4"
@@ -32,7 +34,13 @@ dependencies {
   testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
-kotlin { compilerOptions { freeCompilerArgs.addAll("-Xjsr305=strict") } }
+kotlin {
+  compilerOptions {
+    freeCompilerArgs.addAll("-Xjsr305=strict")
+    apiVersion.set(KotlinVersion.KOTLIN_2_1)
+    languageVersion.set(KotlinVersion.KOTLIN_2_1)
+  }
+}
 
 tasks.withType<Test> { useJUnitPlatform() }
 
