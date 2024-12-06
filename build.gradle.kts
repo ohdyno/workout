@@ -12,12 +12,20 @@ group = "app.ohdyno"
 
 version = "0.0.1-SNAPSHOT"
 
+// Compiler Settings
 java { toolchain { languageVersion = JavaLanguageVersion.of(21) } }
 
-tasks.named<Jar>("jar") { enabled = false }
+kotlin {
+  compilerOptions {
+    freeCompilerArgs.addAll("-Xjsr305=strict")
+    apiVersion.set(KotlinVersion.KOTLIN_2_1)
+    languageVersion.set(KotlinVersion.KOTLIN_2_1)
+  }
+}
 
 configurations { compileOnly { extendsFrom(configurations.annotationProcessor.get()) } }
 
+// Dependencies
 repositories { mavenCentral() }
 
 dependencies {
@@ -34,16 +42,12 @@ dependencies {
   testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
-kotlin {
-  compilerOptions {
-    freeCompilerArgs.addAll("-Xjsr305=strict")
-    apiVersion.set(KotlinVersion.KOTLIN_2_1)
-    languageVersion.set(KotlinVersion.KOTLIN_2_1)
-  }
-}
+// Tasks
+tasks.named<Jar>("jar") { enabled = false }
 
 tasks.withType<Test> { useJUnitPlatform() }
 
+// Spotless
 spotless {
   kotlin { ktfmt() }
   kotlinGradle { ktfmt() }
