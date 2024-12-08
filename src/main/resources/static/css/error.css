@@ -1,0 +1,15 @@
+body {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+}
+
+body > main {
+    width: auto;
+}
+
+#go-back-home {
+    width: 100%;
+    display: grid;
+    place-items: center;
+}

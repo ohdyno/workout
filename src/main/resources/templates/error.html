@@ -1,13 +1,18 @@
 <!DOCTYPE html>
-<html th:replace="~{layout :: layout(~{::title}, ~{::main})}">
+<html lang="en">
 <head>
-    <title>Oops! Simple Workout Tracker</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <link rel="stylesheet" th:href="@{css/pico.classless.red.min.css}">
+    <link rel="stylesheet" th:href="@{css/error.css}">
+    <title>Oops!</title>
 </head>
 <body>
 <main>
     <h1>Oops!</h1>
-    <p>Something went wrong.</p>
-    <p>I am sorry for the inconvenience.</p>
+    <p>Something went wrong. This is embarrassing...</p>
+    <a id="go-back-home" th:href="@{/}"><button>Go back home</button></a>
 </main>
 </body>
 </html>
