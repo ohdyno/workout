@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html th:replace="~{layout :: layout(~{::main})}" lang="en">
 <main>
-    <h1>Welcome!</h1>
+    <h1>Workout Plans</h1>
+    <ul hx-boost="true" hx-target="body > main" hx-select="main" hx-swap="outerHTML">
+        <li><a th:href="@{/plans/bb-upper-lower}">4-Day Bodybuilding: Upper-Lower Split</a></li>
+    </ul>
 </main>
 </html>
