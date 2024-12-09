@@ -2,6 +2,7 @@
     "path": "/actuator/health",
     "name": "actuator health check",
     "description": "Checking if the app responds to the actuator health endpoint",
+    "initialDelay": 7,
     "type": "startup",
-    "attempts": 5
+    "attempts": 3
 }]}}
