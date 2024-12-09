@@ -26,12 +26,7 @@
 <footer>
     <nav>
         <ul>
-            <li>version: <span th:text="${@gitProperties.getShortCommitId()}">unknown</span></li>
-        </ul>
-        <ul>
-            <li>last changed: <span
-                    th:text="${#temporals.format(@gitProperties.getCommitTime(), 'yyyy-MM-dd HH:mm:ss z')}">some time in the past</span>
-            </li>
+            <li>version: <span th:text="${@environment.getProperty('GIT_REV', 'LOCAL')}"></span></li>
         </ul>
     </nav>
 </footer>

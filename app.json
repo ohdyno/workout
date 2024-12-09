@@ -3,5 +3,5 @@
     "name": "actuator health check",
     "description": "Checking if the app responds to the actuator health endpoint",
     "type": "startup",
-    "attempts": 3
+    "attempts": 5
 }]}}

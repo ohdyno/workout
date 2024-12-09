@@ -1,3 +1,4 @@
+import java.time.Instant
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 
 plugins {
@@ -7,7 +8,6 @@ plugins {
   id("io.spring.dependency-management") version "1.1.6"
   id("com.diffplug.spotless") version "7.0.0.BETA4"
   id("com.gradle.cucumber.companion") version "1.3.0"
-  id("com.gorylenko.gradle-git-properties") version "2.4.2"
 }
 
 group = "app.ohdyno"
@@ -51,6 +51,10 @@ dependencies {
 
 // Tasks
 tasks.named<Jar>("jar") { enabled = false }
+
+tasks.build {
+  doLast { System.setProperty("APP_BUILD_TIME", Instant.now().toEpochMilli().toString()) }
+}
 
 tasks.withType<Test> { useJUnitPlatform() }
 
