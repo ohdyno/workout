@@ -1,7 +1,7 @@
 ---
-name: "CI/CD"
+name: "Pull Requests"
 "on":
-  push:
+  pull_request:
     branches:
     - "main"
 jobs:
@@ -33,18 +33,3 @@ jobs:
         distribution: "temurin"
     - name: "Generate and submit dependency graph"
       uses: "gradle/actions/dependency-submission@af1da67850ed9a4cedd57bfd976089dd991e2582"
-  deploy:
-    needs: "build"
-    runs-on: "ubuntu-latest"
-    steps:
-    - name: "Cloning repo"
-      uses: "actions/checkout@v3"
-      with:
-        fetch-depth: 0
-    - name: "Push to dokku"
-      uses: "dokku/github-action@master"
-      with:
-        branch: "main"
-        git_push_flags: "--force"
-        git_remote_url: "ssh://dokku@ohdyno.app:22/workout"
-        ssh_private_key: "${{ secrets.SSH_PRIVATE_KEY }}"
