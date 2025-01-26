@@ -7,10 +7,14 @@
 
 ## Connect Xata Connection Information on Dokku
 
-Set the database connection url environment variable with value from Xata
+Set the database connection environment variable with values from Xata.
 
 ```shell
-dokku config:set workout DATABASE_URL_POSTGRES=<xata connection url>
+dokku config:set workout XATA_REGION=<from xata>
+dokku config:set workout XATA_DATABASE_NAME=<from xata>
+dokku config:set workout XATA_DATABASE_BRANCH=<from xata>
+dokku config:set workout XATA_WORKSPACE_ID=<from xata>
+dokku config:set workout XATA_API_KEY=<from xata>
 ```
 
 ## Dokku Configuration
