@@ -2,19 +2,19 @@
 
 - Code hosted on Github
 - CI/CD via Github Actions
-- App hosted using dokku on a Hostinger VPS
-- Database fully managed by Xata
+- App hosted using [dokku](https://dokku.com/docs/) on a [Hostinger VPS](https://hpanel.hostinger.com/)
+- Database fully managed by [Tembo](https://cloud.tembo.io/)
 
-## Connect Xata Connection Information on Dokku
+## Setup Database Connection Information on Dokku
 
-Set the database connection environment variable with values from Xata.
+Set the database connection environment variable with values the database host provider.
 
 ```shell
-dokku config:set workout XATA_REGION=<from xata>
-dokku config:set workout XATA_DATABASE_NAME=<from xata>
-dokku config:set workout XATA_DATABASE_BRANCH=<from xata>
-dokku config:set workout XATA_WORKSPACE_ID=<from xata>
-dokku config:set workout XATA_API_KEY=<from xata>
+dokku config:set workout PG_HOST=""
+dokku config:set workout PG_PORT=""
+dokku config:set workout PG_DB_NAME=""
+dokku config:set workout PG_USERNAME=""
+dokku config:set workout PG_PASSWORD=""
 ```
 
 ## Dokku Configuration
