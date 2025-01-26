@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 plugins {
   kotlin("jvm") version "2.1.0"
   kotlin("plugin.spring") version "2.1.0"
+  kotlin("plugin.serialization") version "2.1.0"
   id("org.springframework.boot") version "3.4.1"
   id("io.spring.dependency-management") version "1.1.7"
   id("com.diffplug.spotless") version "7.0.2"
@@ -30,7 +31,28 @@ configurations { compileOnly { extendsFrom(configurations.annotationProcessor.ge
 repositories { mavenCentral() }
 
 dependencies {
-  implementation("me.xingzhou:simple-event-store:0.1.9")
+  implementation("me.xingzhou:simple-event-store:0.2.0")
+  implementation(kotlin("reflect"))
+  implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
+
+  implementation("org.springframework.boot:spring-boot-starter-jdbc")
+  runtimeOnly("org.postgresql:postgresql")
+  implementation("org.flywaydb:flyway-core")
+  implementation("org.flywaydb:flyway-database-postgresql")
+
+  testImplementation(platform("org.testcontainers:testcontainers-bom:1.20.4")) {
+    constraints {
+      testImplementation("org.apache.commons:commons-compress:1.27.1") {
+        because(
+            """
+        TestContainers 1.20.4 depends on a commons-compression with vulnerabilities which are fixed in 1.27.1.
+        Issue tracked here: https://github.com/testcontainers/testcontainers-java/issues/8338"""
+                .trimIndent())
+      }
+    }
+    testImplementation("org.testcontainers:postgresql")
+    testImplementation("org.testcontainers:junit-jupiter")
+  }
 
   implementation("org.springframework.boot:spring-boot-starter-actuator")
   implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
