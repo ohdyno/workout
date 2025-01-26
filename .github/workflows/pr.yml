@@ -9,6 +9,8 @@ jobs:
     runs-on: "ubuntu-latest"
     permissions:
       contents: "read"
+      checks: "write"
+      pull-requests: "write"
     steps:
     - uses: "actions/checkout@v4"
     - name: "Set up JDK"
@@ -20,6 +22,11 @@ jobs:
       uses: "gradle/actions/setup-gradle@af1da67850ed9a4cedd57bfd976089dd991e2582"
     - name: "Test"
       run: "./gradlew check"
+    - name: "Publish Test Results"
+      uses: "EnricoMi/publish-unit-test-result-action@v2"
+      if: "always()"
+      with:
+        files: "**/test-results/**/*.xml"
   dependency-submission:
     runs-on: "ubuntu-latest"
     permissions:
