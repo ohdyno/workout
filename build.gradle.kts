@@ -1,4 +1,3 @@
-import java.time.Instant
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 
 plugins {
@@ -31,14 +30,19 @@ configurations { compileOnly { extendsFrom(configurations.annotationProcessor.ge
 repositories { mavenCentral() }
 
 dependencies {
+  implementation("me.xingzhou:simple-event-store:0.1.9")
+
   implementation("org.springframework.boot:spring-boot-starter-actuator")
   implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
   implementation("org.springframework.boot:spring-boot-starter-web")
+  runtimeOnly("org.webjars.npm:htmx.org:2.0.4")
+
   implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
   implementation("org.jetbrains.kotlin:kotlin-reflect")
-  runtimeOnly("org.webjars.npm:htmx.org:2.0.4")
+
   developmentOnly("org.springframework.boot:spring-boot-devtools")
   annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+
   testImplementation("org.springframework.boot:spring-boot-starter-test")
   testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 
@@ -51,10 +55,6 @@ dependencies {
 
 // Tasks
 tasks.named<Jar>("jar") { enabled = false }
-
-tasks.build {
-  doLast { System.setProperty("APP_BUILD_TIME", Instant.now().toEpochMilli().toString()) }
-}
 
 tasks.withType<Test> { useJUnitPlatform() }
 
