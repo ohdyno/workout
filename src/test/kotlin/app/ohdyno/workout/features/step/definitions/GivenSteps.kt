@@ -10,4 +10,7 @@ class GivenSteps {
   @Given("no ongoing workout") fun noOngoingWorkout() {}
 
   @And("a weighted set") fun aWeightedSet() {}
+
+  @Given("the {string} has been added to the catalog")
+  fun theHasBeenAddedToTheCatalog(exerciseName: String) {}
 }

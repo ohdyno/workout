@@ -7,7 +7,6 @@ plugins {
   id("org.springframework.boot") version "3.4.1"
   id("io.spring.dependency-management") version "1.1.7"
   id("com.diffplug.spotless") version "7.0.2"
-  id("com.gradle.cucumber.companion") version "1.3.0"
 }
 
 group = "app.ohdyno"
@@ -40,20 +39,6 @@ dependencies {
   implementation("org.flywaydb:flyway-core")
   implementation("org.flywaydb:flyway-database-postgresql")
 
-  testImplementation(platform("org.testcontainers:testcontainers-bom:1.20.4")) {
-    constraints {
-      testImplementation("org.apache.commons:commons-compress:1.27.1") {
-        because(
-            """
-        TestContainers 1.20.4 depends on a commons-compression with vulnerabilities which are fixed in 1.27.1.
-        Issue tracked here: https://github.com/testcontainers/testcontainers-java/issues/8338"""
-                .trimIndent())
-      }
-    }
-    testImplementation("org.testcontainers:postgresql")
-    testImplementation("org.testcontainers:junit-jupiter")
-  }
-
   implementation("org.springframework.boot:spring-boot-starter-actuator")
   implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
   implementation("org.springframework.boot:spring-boot-starter-web")
@@ -71,6 +56,7 @@ dependencies {
   testImplementation(platform("io.cucumber:cucumber-bom:7.20.1"))
   testImplementation("io.cucumber:cucumber-junit-platform-engine")
   testImplementation("io.cucumber:cucumber-java")
+  testImplementation("io.cucumber:cucumber-spring")
   testImplementation("org.junit.platform:junit-platform-suite-engine")
   testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
@@ -78,12 +64,20 @@ dependencies {
 // Tasks
 tasks.named<Jar>("jar") { enabled = false }
 
-tasks.withType<Test> { useJUnitPlatform() }
+tasks.withType<Test> {
+  useJUnitPlatform()
+  systemProperty("cucumber.junit-platform.naming-strategy", "long")
+}
 
 // Spotless
 spotless {
   kotlin { ktfmt() }
   kotlinGradle { ktfmt() }
+
+  gherkin {
+    target("**/*.feature")
+    gherkinUtils()
+  }
 
   flexmark {
     target("**/*.md")
