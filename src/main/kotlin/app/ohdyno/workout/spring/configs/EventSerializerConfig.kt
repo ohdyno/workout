@@ -15,6 +15,7 @@ class EventSerializerConfig {
   @Bean
   fun createAdapterForEventSerializer(): ForEventSerializer {
     return KotlinXSerializationAdapter(
-        SerializersModule { polymorphic(Event::class) { subclass(TypeAEvent::class) } })
+        serializerModule =
+            SerializersModule { polymorphic(Event::class) { subclass(TypeAEvent::class) } })
   }
 }

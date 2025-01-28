@@ -30,7 +30,7 @@ configurations { compileOnly { extendsFrom(configurations.annotationProcessor.ge
 repositories { mavenCentral() }
 
 dependencies {
-  implementation("me.xingzhou:simple-event-store:0.2.0")
+  implementation("me.xingzhou:simple-event-store:0.2.1")
   implementation(kotlin("reflect"))
   implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
 

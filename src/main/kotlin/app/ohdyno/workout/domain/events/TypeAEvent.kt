@@ -6,4 +6,4 @@ import me.xingzhou.projects.simple.event.store.Event
 
 @Serializable
 @SerialName("type-a-event")
-class TypeAEvent(override val id: String = "type-a-event-id") : Event
+class TypeAEvent(val id: String = "type-a-event-id") : Event
