@@ -1,6 +1,6 @@
 rootProject.name = "workout"
 
-plugins { id("org.danilopianini.gradle-pre-commit-git-hooks") version "2.0.18" }
+plugins { id("org.danilopianini.gradle-pre-commit-git-hooks") version "2.0.20" }
 
 if (System.getenv("DOKKU_APP_TYPE") == null) {
   gitHooks {
