@@ -1,0 +1,40 @@
+[versions]
+io-cucumber = "7.21.1"
+org-flywaydb = "11.3.1"
+org-jetbrains-kotlin = "2.1.10"
+org-springframework-boot = "3.4.2"
+
+[libraries]
+com-fasterxml-jackson-module-jackson-module-kotlin = "com.fasterxml.jackson.module:jackson-module-kotlin:2.18.2"
+io-cucumber-cucumber-bom = { module = "io.cucumber:cucumber-bom", version.ref = "io-cucumber" }
+io-cucumber-cucumber-java = { module = "io.cucumber:cucumber-java", version.ref = "io-cucumber" }
+io-cucumber-cucumber-junit-platform-engine = { module = "io.cucumber:cucumber-junit-platform-engine", version.ref = "io-cucumber" }
+io-cucumber-cucumber-spring = { module = "io.cucumber:cucumber-spring", version.ref = "io-cucumber" }
+me-xingzhou-simple-event-store = "me.xingzhou:simple-event-store:0.2.1"
+org-flywaydb-flyway-core = { module = "org.flywaydb:flyway-core", version.ref = "org-flywaydb" }
+org-flywaydb-flyway-database-postgresql = { module = "org.flywaydb:flyway-database-postgresql", version.ref = "org-flywaydb" }
+org-htmlunit = "org.htmlunit:htmlunit:4.9.0"
+org-jetbrains-kotlin-kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "org-jetbrains-kotlin" }
+org-jetbrains-kotlin-kotlin-test-junit5 = { module = "org.jetbrains.kotlin:kotlin-test-junit5", version.ref = "org-jetbrains-kotlin" }
+org-jetbrains-kotlinx-kotlinx-serialization-json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0"
+org-junit-platform-junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
+org-junit-platform-junit-platform-suite-engine = "org.junit.platform:junit-platform-suite-engine:1.11.4"
+org-postgresql = "org.postgresql:postgresql:42.7.5"
+org-springframework-boot-spring-boot-configuration-processor = { module = "org.springframework.boot:spring-boot-configuration-processor" }
+org-springframework-boot-spring-boot-devtools = { module = "org.springframework.boot:spring-boot-devtools" }
+org-springframework-boot-spring-boot-starter-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator" }
+org-springframework-boot-spring-boot-starter-jdbc = { module = "org.springframework.boot:spring-boot-starter-jdbc" }
+org-springframework-boot-spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test" }
+org-springframework-boot-spring-boot-starter-thymeleaf = { module = "org.springframework.boot:spring-boot-starter-thymeleaf" }
+org-springframework-boot-spring-boot-starter-web = { module = "org.springframework.boot:spring-boot-starter-web" }
+org-webjars-npm-htmx-org = "org.webjars.npm:htmx.org:2.0.4"
+
+[plugins]
+com-diffplug-spotless = "com.diffplug.spotless:7.0.2"
+com-github-ben-manes-versions = "com.github.ben-manes.versions:0.52.0"
+io-spring-dependency-management = "io.spring.dependency-management:1.1.7"
+nl-littlerobots-version-catalog-update = "nl.littlerobots.version-catalog-update:0.8.5"
+org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "org-jetbrains-kotlin" }
+org-jetbrains-kotlin-plugin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "org-jetbrains-kotlin" }
+org-jetbrains-kotlin-plugin-spring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "org-jetbrains-kotlin" }
+org-springframework-boot = { id = "org.springframework.boot", version.ref = "org-springframework-boot" }

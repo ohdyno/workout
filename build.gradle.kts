@@ -1,12 +1,15 @@
+import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 
 plugins {
-  kotlin("jvm") version "2.1.0"
-  kotlin("plugin.spring") version "2.1.0"
-  kotlin("plugin.serialization") version "2.1.0"
-  id("org.springframework.boot") version "3.4.1"
-  id("io.spring.dependency-management") version "1.1.7"
-  id("com.diffplug.spotless") version "7.0.2"
+  alias(libs.plugins.org.jetbrains.kotlin.jvm)
+  alias(libs.plugins.org.jetbrains.kotlin.plugin.spring)
+  alias(libs.plugins.org.jetbrains.kotlin.plugin.serialization)
+  alias(libs.plugins.org.springframework.boot)
+  alias(libs.plugins.io.spring.dependency.management)
+  alias(libs.plugins.com.diffplug.spotless)
+  alias(libs.plugins.com.github.ben.manes.versions)
+  alias(libs.plugins.nl.littlerobots.version.catalog.update)
 }
 
 group = "app.ohdyno"
@@ -30,40 +33,51 @@ configurations { compileOnly { extendsFrom(configurations.annotationProcessor.ge
 repositories { mavenCentral() }
 
 dependencies {
-  implementation("me.xingzhou:simple-event-store:0.2.1")
-  implementation(kotlin("reflect"))
-  implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
+  implementation(libs.me.xingzhou.simple.event.store)
+  implementation(libs.org.jetbrains.kotlinx.kotlinx.serialization.json)
 
-  implementation("org.springframework.boot:spring-boot-starter-jdbc")
-  runtimeOnly("org.postgresql:postgresql")
-  implementation("org.flywaydb:flyway-core")
-  implementation("org.flywaydb:flyway-database-postgresql")
+  implementation(libs.org.springframework.boot.spring.boot.starter.jdbc)
+  runtimeOnly(libs.org.postgresql)
+  implementation(libs.org.flywaydb.flyway.core)
+  implementation(libs.org.flywaydb.flyway.database.postgresql)
 
-  implementation("org.springframework.boot:spring-boot-starter-actuator")
-  implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
-  implementation("org.springframework.boot:spring-boot-starter-web")
-  runtimeOnly("org.webjars.npm:htmx.org:2.0.4")
-  testImplementation("org.htmlunit:htmlunit")
+  implementation(libs.org.springframework.boot.spring.boot.starter.actuator)
+  implementation(libs.org.springframework.boot.spring.boot.starter.thymeleaf)
+  implementation(libs.org.springframework.boot.spring.boot.starter.web)
+  runtimeOnly(libs.org.webjars.npm.htmx.org)
+  testImplementation(libs.org.htmlunit)
 
-  implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-  implementation("org.jetbrains.kotlin:kotlin-reflect")
+  implementation(libs.com.fasterxml.jackson.module.jackson.module.kotlin)
+  implementation(libs.org.jetbrains.kotlin.kotlin.reflect)
 
-  developmentOnly("org.springframework.boot:spring-boot-devtools")
-  annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+  developmentOnly(libs.org.springframework.boot.spring.boot.devtools)
+  annotationProcessor(libs.org.springframework.boot.spring.boot.configuration.processor)
 
-  testImplementation("org.springframework.boot:spring-boot-starter-test")
-  testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
+  testImplementation(libs.org.springframework.boot.spring.boot.starter.test)
+  testImplementation(libs.org.jetbrains.kotlin.kotlin.test.junit5)
 
-  testImplementation(platform("io.cucumber:cucumber-bom:7.20.1"))
-  testImplementation("io.cucumber:cucumber-junit-platform-engine")
-  testImplementation("io.cucumber:cucumber-java")
-  testImplementation("io.cucumber:cucumber-spring")
-  testImplementation("org.junit.platform:junit-platform-suite-engine")
-  testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+  testImplementation(platform(libs.io.cucumber.cucumber.bom))
+  testImplementation(libs.io.cucumber.cucumber.junit.platform.engine)
+  testImplementation(libs.io.cucumber.cucumber.java)
+  testImplementation(libs.io.cucumber.cucumber.spring)
+  testImplementation(libs.org.junit.platform.junit.platform.suite.engine)
+  testRuntimeOnly(libs.org.junit.platform.junit.platform.launcher)
 }
 
 // Tasks
 tasks.named<Jar>("jar") { enabled = false }
+
+tasks.withType<DependencyUpdatesTask> {
+  rejectVersionIf {
+    fun isNonStable(version: String): Boolean {
+      val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { version.uppercase().contains(it) }
+      val regex = "^[0-9,.v-]+(-r)?$".toRegex()
+      val isStable = stableKeyword || regex.matches(version)
+      return isStable.not()
+    }
+    isNonStable(candidate.version)
+  }
+}
 
 tasks.withType<Test> {
   useJUnitPlatform()

@@ -7,7 +7,7 @@ if (System.getenv("DOKKU_APP_TYPE") == null) {
     preCommit {
       from {
         """
-              ./gradlew spotlessApply
+              ./gradlew spotlessApply versionCatalogFormat
               git add --update
           """
             .trimIndent()
@@ -15,6 +15,6 @@ if (System.getenv("DOKKU_APP_TYPE") == null) {
     }
 
     commitMsg { conventionalCommits { defaultTypes() } }
-    createHooks()
+    createHooks(true)
   }
 }
