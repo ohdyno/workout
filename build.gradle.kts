@@ -65,7 +65,10 @@ dependencies {
 }
 
 // Tasks
-tasks.named<Jar>("jar") { enabled = false }
+/*
+Disabling because it is unnecessary
+ */
+tasks.jar { enabled = false }
 
 /*
 Stage task necessary because Heroku buildpack does not auto-detect this app
