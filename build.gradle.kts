@@ -1,6 +1,6 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
+import io.spring.gradle.dependencymanagement.dsl.DependencyManagementExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
-import org.springframework.boot.gradle.plugin.SpringBootPlugin
 
 plugins {
   alias(libs.plugins.org.jetbrains.kotlin.jvm)
@@ -32,11 +32,16 @@ configurations { compileOnly { extendsFrom(configurations.annotationProcessor.ge
 // Dependencies
 repositories { mavenCentral() }
 
-dependencies {
-  implementation(platform(SpringBootPlugin.BOM_COORDINATES))
-  implementation(platform(libs.io.opentelemetry.instrumentation.opentelemetry.instrumentation.bom))
-  testImplementation(platform(libs.io.cucumber.cucumber.bom))
+apply(plugin = "io.spring.dependency-management")
 
+the<DependencyManagementExtension>().apply {
+  imports {
+    mavenBom(libs.io.opentelemetry.instrumentation.bom.get().toString())
+    mavenBom(libs.io.cucumber.cucumber.bom.get().toString())
+  }
+}
+
+dependencies {
   runtimeOnly(libs.bundles.only.runtime)
   testRuntimeOnly(libs.bundles.only.runtime.test)
   developmentOnly(libs.bundles.only.development)

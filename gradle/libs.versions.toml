@@ -10,7 +10,7 @@ io-cucumber-cucumber-bom = { module = "io.cucumber:cucumber-bom", version.ref = 
 io-cucumber-cucumber-java = { module = "io.cucumber:cucumber-java", version.ref = "io-cucumber" }
 io-cucumber-cucumber-junit-platform-engine = { module = "io.cucumber:cucumber-junit-platform-engine", version.ref = "io-cucumber" }
 io-cucumber-cucumber-spring = { module = "io.cucumber:cucumber-spring", version.ref = "io-cucumber" }
-io-opentelemetry-instrumentation-opentelemetry-instrumentation-bom = "io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom:2.12.0"
+io-opentelemetry-instrumentation-bom = "io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom:2.12.0"
 io-opentelemetry-instrumentation-opentelemetry-spring-boot-starter = { module = "io.opentelemetry.instrumentation:opentelemetry-spring-boot-starter" }
 me-xingzhou-simple-event-store = "me.xingzhou:simple-event-store:0.2.1"
 org-flywaydb-flyway-core = { module = "org.flywaydb:flyway-core", version.ref = "org-flywaydb" }
@@ -22,8 +22,8 @@ org-jetbrains-kotlinx-kotlinx-serialization-json = "org.jetbrains.kotlinx:kotlin
 org-junit-platform-junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
 org-junit-platform-junit-platform-suite-engine = "org.junit.platform:junit-platform-suite-engine:1.11.4"
 org-postgresql = "org.postgresql:postgresql:42.7.5"
-org-springframework-boot-spring-boot-configuration-processor = { module = "org.springframework.boot:spring-boot-configuration-processor", version.ref = "org-springframework-boot" }
-org-springframework-boot-spring-boot-devtools = { module = "org.springframework.boot:spring-boot-devtools", version.ref = "org-springframework-boot" }
+org-springframework-boot-spring-boot-configuration-processor = { module = "org.springframework.boot:spring-boot-configuration-processor" }
+org-springframework-boot-spring-boot-devtools = { module = "org.springframework.boot:spring-boot-devtools" }
 org-springframework-boot-spring-boot-starter-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator" }
 org-springframework-boot-spring-boot-starter-jdbc = { module = "org.springframework.boot:spring-boot-starter-jdbc" }
 org-springframework-boot-spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test" }
