@@ -1,12 +1,12 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
+import org.springframework.boot.gradle.plugin.SpringBootPlugin
 
 plugins {
   alias(libs.plugins.org.jetbrains.kotlin.jvm)
   alias(libs.plugins.org.jetbrains.kotlin.plugin.spring)
   alias(libs.plugins.org.jetbrains.kotlin.plugin.serialization)
   alias(libs.plugins.org.springframework.boot)
-  alias(libs.plugins.io.spring.dependency.management)
   alias(libs.plugins.com.diffplug.spotless)
   alias(libs.plugins.com.github.ben.manes.versions)
   alias(libs.plugins.nl.littlerobots.version.catalog.update)
@@ -33,35 +33,21 @@ configurations { compileOnly { extendsFrom(configurations.annotationProcessor.ge
 repositories { mavenCentral() }
 
 dependencies {
-  implementation(libs.me.xingzhou.simple.event.store)
-  implementation(libs.org.jetbrains.kotlinx.kotlinx.serialization.json)
-
-  implementation(libs.org.springframework.boot.spring.boot.starter.jdbc)
-  runtimeOnly(libs.org.postgresql)
-  implementation(libs.org.flywaydb.flyway.core)
-  implementation(libs.org.flywaydb.flyway.database.postgresql)
-
-  implementation(libs.org.springframework.boot.spring.boot.starter.actuator)
-  implementation(libs.org.springframework.boot.spring.boot.starter.thymeleaf)
-  implementation(libs.org.springframework.boot.spring.boot.starter.web)
-  runtimeOnly(libs.org.webjars.npm.htmx.org)
-  testImplementation(libs.org.htmlunit)
-
-  implementation(libs.com.fasterxml.jackson.module.jackson.module.kotlin)
-  implementation(libs.org.jetbrains.kotlin.kotlin.reflect)
-
-  developmentOnly(libs.org.springframework.boot.spring.boot.devtools)
-  annotationProcessor(libs.org.springframework.boot.spring.boot.configuration.processor)
-
-  testImplementation(libs.org.springframework.boot.spring.boot.starter.test)
-  testImplementation(libs.org.jetbrains.kotlin.kotlin.test.junit5)
-
+  implementation(platform(SpringBootPlugin.BOM_COORDINATES))
+  implementation(platform(libs.io.opentelemetry.instrumentation.opentelemetry.instrumentation.bom))
   testImplementation(platform(libs.io.cucumber.cucumber.bom))
-  testImplementation(libs.io.cucumber.cucumber.junit.platform.engine)
-  testImplementation(libs.io.cucumber.cucumber.java)
-  testImplementation(libs.io.cucumber.cucumber.spring)
-  testImplementation(libs.org.junit.platform.junit.platform.suite.engine)
-  testRuntimeOnly(libs.org.junit.platform.junit.platform.launcher)
+
+  runtimeOnly(libs.bundles.only.runtime)
+  testRuntimeOnly(libs.bundles.only.runtime.test)
+  developmentOnly(libs.bundles.only.development)
+  annotationProcessor(libs.bundles.only.annotations)
+
+  implementation(libs.bundles.event.store)
+  implementation(libs.bundles.devops)
+  implementation(libs.bundles.web)
+  testImplementation(libs.bundles.web.test)
+  testImplementation(libs.bundles.test.core)
+  testImplementation(libs.bundles.bdd)
 }
 
 // Tasks
