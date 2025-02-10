@@ -67,6 +67,14 @@ dependencies {
 // Tasks
 tasks.named<Jar>("jar") { enabled = false }
 
+/*
+Stage task necessary because Heroku buildpack does not auto-detect this app
+as Spring Boot since switching to version catalog.
+Heroku documentation:
+https://devcenter.heroku.com/articles/deploying-gradle-apps-on-heroku#verify-that-your-build-file-is-set-up-correctly
+*/
+tasks.register("stage") { dependsOn(tasks.bootJar) }
+
 tasks.withType<DependencyUpdatesTask> {
   rejectVersionIf {
     fun isNonStable(version: String): Boolean {
