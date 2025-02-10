@@ -1,6 +1,5 @@
 [versions]
 io-cucumber = "7.21.1"
-org-flywaydb = "11.3.1"
 org-jetbrains-kotlin = "2.1.10"
 org-springframework-boot = "3.4.2"
 
@@ -13,8 +12,8 @@ io-cucumber-cucumber-spring = { module = "io.cucumber:cucumber-spring", version.
 io-opentelemetry-instrumentation-bom = "io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom:2.12.0"
 io-opentelemetry-instrumentation-opentelemetry-spring-boot-starter = { module = "io.opentelemetry.instrumentation:opentelemetry-spring-boot-starter" }
 me-xingzhou-simple-event-store = "me.xingzhou:simple-event-store:0.2.1"
-org-flywaydb-flyway-core = { module = "org.flywaydb:flyway-core", version.ref = "org-flywaydb" }
-org-flywaydb-flyway-database-postgresql = { module = "org.flywaydb:flyway-database-postgresql", version.ref = "org-flywaydb" }
+org-flywaydb-flyway-core = { module = "org.flywaydb:flyway-core" }
+org-flywaydb-flyway-database-postgresql = { module = "org.flywaydb:flyway-database-postgresql" }
 org-htmlunit = "org.htmlunit:htmlunit:4.9.0"
 org-jetbrains-kotlin-kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "org-jetbrains-kotlin" }
 org-jetbrains-kotlin-kotlin-test-junit5 = { module = "org.jetbrains.kotlin:kotlin-test-junit5", version.ref = "org-jetbrains-kotlin" }
