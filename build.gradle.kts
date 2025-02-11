@@ -1,4 +1,3 @@
-import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
 
@@ -8,7 +7,6 @@ plugins {
   alias(libs.plugins.org.jetbrains.kotlin.plugin.serialization)
   alias(libs.plugins.org.springframework.boot)
   alias(libs.plugins.com.diffplug.spotless)
-  alias(libs.plugins.com.github.ben.manes.versions)
   alias(libs.plugins.nl.littlerobots.version.catalog.update)
 }
 
@@ -63,33 +61,6 @@ Heroku documentation:
 https://devcenter.heroku.com/articles/deploying-gradle-apps-on-heroku#verify-that-your-build-file-is-set-up-correctly
 */
 tasks.register("stage") { dependsOn(tasks.bootJar) }
-
-tasks.withType<DependencyUpdatesTask> {
-  rejectVersionIf {
-    fun isNonStable(version: String): Boolean {
-      val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { version.uppercase().contains(it) }
-      val regex = "^[0-9,.v-]+(-r)?$".toRegex()
-      val isStable = stableKeyword || regex.matches(version)
-      return isStable.not()
-    }
-    isNonStable(candidate.version)
-  }
-
-  checkForGradleUpdate = true
-
-  filterConfigurations =
-      Spec<Configuration> {
-        setOf(
-                "annotationProcessor",
-                "compileClasspath",
-                "developmentOnly",
-                "runtimeClasspath",
-                "testAnnotationProcessor",
-                "testCompileClasspath",
-                "testRuntimeClasspath")
-            .contains(it.name)
-      }
-}
 
 tasks.withType<Test> {
   useJUnitPlatform()
