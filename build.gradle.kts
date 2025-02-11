@@ -1,6 +1,6 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
-import io.spring.gradle.dependencymanagement.dsl.DependencyManagementExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
+import org.springframework.boot.gradle.plugin.SpringBootPlugin
 
 plugins {
   alias(libs.plugins.org.jetbrains.kotlin.jvm)
@@ -32,24 +32,19 @@ configurations { compileOnly { extendsFrom(configurations.annotationProcessor.ge
 // Dependencies
 repositories { mavenCentral() }
 
-apply(plugin = "io.spring.dependency-management")
-
-the<DependencyManagementExtension>().apply {
-  imports {
-    mavenBom(libs.io.opentelemetry.instrumentation.bom.get().toString())
-    mavenBom(libs.io.cucumber.cucumber.bom.get().toString())
-  }
-}
-
 dependencies {
   runtimeOnly(libs.bundles.only.runtime)
   testRuntimeOnly(libs.bundles.only.runtime.test)
   developmentOnly(libs.bundles.only.development)
-  annotationProcessor(libs.bundles.only.annotations)
+  annotationProcessor(libs.bundles.annotations)
 
+  implementation(platform(SpringBootPlugin.BOM_COORDINATES))
+  implementation(platform(libs.io.opentelemetry.instrumentation.bom))
   implementation(libs.bundles.event.store)
   implementation(libs.bundles.devops)
   implementation(libs.bundles.web)
+
+  testImplementation(platform(libs.io.cucumber.cucumber.bom))
   testImplementation(libs.bundles.web.test)
   testImplementation(libs.bundles.test.core)
   testImplementation(libs.bundles.bdd)
@@ -79,6 +74,21 @@ tasks.withType<DependencyUpdatesTask> {
     }
     isNonStable(candidate.version)
   }
+
+  checkForGradleUpdate = true
+
+  filterConfigurations =
+      Spec<Configuration> {
+        setOf(
+                "annotationProcessor",
+                "compileClasspath",
+                "developmentOnly",
+                "runtimeClasspath",
+                "testAnnotationProcessor",
+                "testCompileClasspath",
+                "testRuntimeClasspath")
+            .contains(it.name)
+      }
 }
 
 tasks.withType<Test> {
