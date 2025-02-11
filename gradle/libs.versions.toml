@@ -21,8 +21,8 @@ org-jetbrains-kotlinx-kotlinx-serialization-json = { module = "org.jetbrains.kot
 org-junit-platform-junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
 org-junit-platform-junit-platform-suite-engine = { module = "org.junit.platform:junit-platform-suite-engine" }
 org-postgresql = { module = "org.postgresql:postgresql" }
-org-springframework-boot-spring-boot-configuration-processor = { module = "org.springframework.boot:spring-boot-configuration-processor", version.ref = "org-springframework-boot" }
-org-springframework-boot-spring-boot-devtools = { module = "org.springframework.boot:spring-boot-devtools", version.ref = "org-springframework-boot" }
+org-springframework-boot-spring-boot-configuration-processor = { module = "org.springframework.boot:spring-boot-configuration-processor" }
+org-springframework-boot-spring-boot-devtools = { module = "org.springframework.boot:spring-boot-devtools" }
 org-springframework-boot-spring-boot-starter-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator" }
 org-springframework-boot-spring-boot-starter-jdbc = { module = "org.springframework.boot:spring-boot-starter-jdbc" }
 org-springframework-boot-spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test" }

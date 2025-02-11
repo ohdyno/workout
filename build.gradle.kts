@@ -33,7 +33,11 @@ repositories { mavenCentral() }
 dependencies {
   runtimeOnly(libs.bundles.only.runtime)
   testRuntimeOnly(libs.bundles.only.runtime.test)
+
+  developmentOnly(platform(SpringBootPlugin.BOM_COORDINATES))
   developmentOnly(libs.bundles.only.development)
+
+  annotationProcessor(platform(SpringBootPlugin.BOM_COORDINATES))
   annotationProcessor(libs.bundles.annotations)
 
   implementation(platform(SpringBootPlugin.BOM_COORDINATES))
