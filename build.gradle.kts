@@ -41,7 +41,6 @@ dependencies {
   annotationProcessor(libs.bundles.annotations)
 
   implementation(platform(SpringBootPlugin.BOM_COORDINATES))
-  implementation(platform(libs.io.opentelemetry.instrumentation.bom))
   implementation(libs.bundles.event.store)
   implementation(libs.bundles.devops)
   implementation(libs.bundles.web)

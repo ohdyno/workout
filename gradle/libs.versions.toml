@@ -9,8 +9,6 @@ io-cucumber-cucumber-bom = { module = "io.cucumber:cucumber-bom", version.ref = 
 io-cucumber-cucumber-java = { module = "io.cucumber:cucumber-java", version.ref = "io-cucumber" }
 io-cucumber-cucumber-junit-platform-engine = { module = "io.cucumber:cucumber-junit-platform-engine", version.ref = "io-cucumber" }
 io-cucumber-cucumber-spring = { module = "io.cucumber:cucumber-spring", version.ref = "io-cucumber" }
-io-opentelemetry-instrumentation-bom = "io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom:2.12.0"
-io-opentelemetry-instrumentation-opentelemetry-spring-boot-starter = { module = "io.opentelemetry.instrumentation:opentelemetry-spring-boot-starter" }
 me-xingzhou-simple-event-store = "me.xingzhou:simple-event-store:0.2.1"
 org-flywaydb-flyway-core = { module = "org.flywaydb:flyway-core" }
 org-flywaydb-flyway-database-postgresql = { module = "org.flywaydb:flyway-database-postgresql" }
@@ -49,7 +47,6 @@ bdd = [
     "org-junit-platform-junit-platform-suite-engine",
 ]
 devops = [
-    "io-opentelemetry-instrumentation-opentelemetry-spring-boot-starter",
     "org-springframework-boot-spring-boot-starter-actuator",
 ]
 event-store = [
