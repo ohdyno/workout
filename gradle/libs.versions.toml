@@ -30,7 +30,7 @@ org-webjars-npm-htmx-org = "org.webjars.npm:htmx.org:2.0.4"
 
 [plugins]
 com-diffplug-spotless = "com.diffplug.spotless:7.0.2"
-nl-littlerobots-version-catalog-update = "nl.littlerobots.version-catalog-update:0.8.5"
+nl-littlerobots-version-catalog-update = "nl.littlerobots.version-catalog-update:1.0.0"
 org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "org-jetbrains-kotlin" }
 org-jetbrains-kotlin-plugin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "org-jetbrains-kotlin" }
 org-jetbrains-kotlin-plugin-spring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "org-jetbrains-kotlin" }
