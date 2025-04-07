@@ -1,5 +1,5 @@
 [versions]
-io-cucumber = "7.21.1"
+io-cucumber = "7.22.0"
 org-jetbrains-kotlin = "2.1.10"
 org-springframework-boot = "3.4.2"
 
